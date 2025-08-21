@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/Login.css";
+
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -13,14 +13,13 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Login with: ${form.email}`);
-    // contoh redirect setelah login
     navigate("/dashboard");
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit} className="login-form">
+    <>
+     <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
           name="email"
@@ -28,6 +27,7 @@ export default function Login() {
           value={form.email}
           onChange={handleChange}
           required
+          className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
         />
 
         <input
@@ -37,17 +37,28 @@ export default function Login() {
           value={form.password}
           onChange={handleChange}
           required
+          className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
         />
 
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+        >
+          Login
+        </button>
       </form>
 
-      <p className="link">
-        <Link to="/forgot-password">Forgot Password?</Link>
+      <p className="text-sm text-center mt-4">
+        <Link to="/forgot-password" className="text-blue-500 hover:underline">
+          Forgot Password?
+        </Link>
       </p>
-      <p className="link">
-        <Link to="/register">Create Account</Link>
+      <p className="text-sm text-center mt-2">
+        <Link to="/register" className="text-blue-500 hover:underline">
+          Create Account
+        </Link>
       </p>
-    </div>
+    </>
+    
   );
 }
